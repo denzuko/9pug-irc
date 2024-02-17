@@ -1,26 +1,23 @@
-FROM ubuntu:focal as build
-
+# --[ Stage 0
+FROM ubuntu:focal as BASE
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-venv \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && \
+    python3 -m pip install "poetry==1.3.2"
 
-RUN python3 -m pip install "poetry==1.3.2"
-
-COPY . /app
+# --[ Stage 1
+FROM BASE as build
 WORKDIR /app
+COPY . /app
 RUN poetry config virtualenvs.in-project true
 RUN poetry install --only main
 
-FROM ubuntu:focal
-
+# --[ Stage 2
+FROM BASE
 COPY --from=build /app /app
-
-RUN apt-get update && apt-get install -y \
-    python3 \
-    && rm -rf /var/lib/apt/lists/*
-
 VOLUME /app/_irc-logs
 WORKDIR /app
 ENV PATH="/app/.venv/bin:$PATH"
