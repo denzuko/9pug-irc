@@ -17,15 +17,13 @@
 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='quodlibet.svg') }}" style="height:1em"> Quod Libet IRC Logs</a>
+        <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='quodlibet.svg') }}" style="height:1em"> 9pug IRC Logs</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li{% if active == "quodlibet" %} class="active"{% endif %}><a class="nav-link" href="/irc/quodlibet/latest.log.html#irc-end">#quodlibet</a></li>
-            <li{% if active == "pypy" %} class="active"{% endif %}><a class="nav-link" href="/irc/pypy/latest.log.html#irc-end">#pypy</a></li>
-            <li{% if active == "hpy" %} class="active"{% endif %}><a class="nav-link" href="/irc/hpy/latest.log.html#irc-end">#hpy</a></li>
+            <li{% if active == "9pug" %} class="active"{% endif %}><a class="nav-link" href="/irc/9pug/latest.log.html#irc-end">#9pug</a></li>
           </ul>
         </div>
       </nav>
