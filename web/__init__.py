@@ -5,16 +5,21 @@ import subprocess
 from flask import Flask, render_template
 from flask import redirect, send_from_directory, request, Response
 
+## CONFIG
+IRC_CHANS = {
+    "9pug": "#9pug@irc.oftc.net",
+}
 
+DEFAULT_CHAN = "9pug"
+
+## Service
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
     base_url = request.url_root.rstrip("/")
 
     return render_template('index.html', base=base_url)
-
 
 def irc_logs(irc_dir, name, filename=None, dir_mtime={}):
 
@@ -68,15 +73,6 @@ def irc_logs(irc_dir, name, filename=None, dir_mtime={}):
     return render_template('irc.html', content=data, stylesheet="irclog.css",
                            base=base_url, active=name)
 
-
-IRC_CHANS = {
-    "quodlibet": "#quodlibet@irc.oftc.net",
-    "pypy": "#pypy@irc.libera.chat",
-    "hpy": "#hpy@irc.libera.chat",
-}
-
-DEFAULT_CHAN = "quodlibet"
-
 @app.route('/irc/<name>/')
 @app.route('/irc/<name>/<path:filename>')
 def irc(name, filename=None):
@@ -86,10 +82,8 @@ def irc(name, filename=None):
         IRC_CHANS.get(name, IRC_CHANS[DEFAULT_CHAN])))
     return irc_logs(irc_dir, name, filename)
 
-
 @app.route('/robots.txt')
 def robots():
-    return Response("""\
-User-agent: *
-Disallow: /
-""", mimetype="text/plain")
+    return Response("\n".join([
+        "User-agent: *", 
+        "Disallow: /"]), mimetype="text/plain")
