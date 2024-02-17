@@ -5,7 +5,7 @@ import os
 import time
 
 from twisted.words.protocols import irc
-from twisted.internet import reactor, protocol
+from twisted.internet import reactor, protocol, ssl
 
 
 class Bot(object):
@@ -19,7 +19,7 @@ class Bot(object):
 KEEP_DAYS = 3
 
 BOTS = [
-    Bot("glenda", "#9pug", "irc.oftc.net", 6697),
+    Bot("glenda", "#9pug", "irc.oftc.net", 6667),
 ]
 
 
