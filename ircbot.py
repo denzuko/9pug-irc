@@ -19,9 +19,7 @@ class Bot(object):
 KEEP_DAYS = 3
 
 BOTS = [
-    Bot("marvin", "#pypy", "irc.libera.chat", 6667),
-    Bot("marvin", "#hpy", "irc.libera.chat", 6667),
-    Bot("marvin", "#quodlibet", "irc.oftc.net", 6667),
+    Bot("glenda", "#9pug", "irc.oftc.net", 6697),
 ]
 
 
