@@ -5,7 +5,7 @@ import os
 import time
 
 from twisted.words.protocols import irc
-from twisted.internet import reactor, protocol, ssl
+from twisted.internet import reactor, protocol
 
 
 class Bot(object):
