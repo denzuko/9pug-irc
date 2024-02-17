@@ -1,0 +1,12 @@
+---
+version: '3.9'
+services:
+  chatlog:
+    restart: always
+    tty: true
+    stdin_open: true
+    ports:
+      - 80/tcp
+    image: ghcr.io/denzuko/9pug-irc:master
+    command: ["-c"]
+...
